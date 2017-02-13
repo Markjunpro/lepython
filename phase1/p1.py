@@ -273,13 +273,194 @@ print(calc([1,2,3]))
 '''
 
 
-#位置参数：一个单数
-#默认参数
-#可变参数
+#位置参数：一个参数
+#默认参数：多个参数，设置默认值
+#可变参数：参数的个数可变，tuple
 
 
-#关键字参数
+#关键字参数:多个参数名
+
+
+'''
+def person(name,age,**kw):
+    print('name :',name,'age :',age,'other :',kw)
+extra={'city':'beijing','job':'Engineer'}
+#person('Mark',30,city=extra['city'],job=extra['job'])
+person('Mark',30,**extra)
+'''
+
+
+'''
 #关键字命名参数
+def person(name,age,*,city,job):
+    print(name,age,city,job)
+person('jack',24,city='beijing',job='engineer')
+'''
+
+'''
+#参数组合
+在Python中定义函数，可以用必选参数、默认参数、可变参数、关键字参数和命名关键字参数，这5种参数都可以组合使用。但是请注意，参数定义的顺序必须是：必选参数、默认参数、可变参数、命名关键字参数和关键字参数。
+'''
+
+'''
+def f1(a,b,c=0,*args,**kw):
+    print('a =', a, 'b =', b, 'c =', c, 'args =', args, 'kw =', kw)
+def f2(a, b, c=0, *, d, **kw):
+    print('a =', a, 'b =', b, 'c =', c, 'd =', d, 'kw =', kw)
+print(f1(1,2))
+'''
+
+#递归函数
+'''在函数内部，可以调用其他函数。如果一个函数在内部调用自身本身，这个函数就是递归函数。'''
+'''
+def fact(n):
+    if n==1:
+        return 1
+    return n*fact(n-1)
+print(fact(100))
+#递归函数的优点是定义简单，逻辑清晰。理论上，所有的递归函数都可以写成循环的方式，但循环的逻辑不如递归清晰。
+'''
 
 
+'''
+L=[]
+n=1
+while n<=99:
+    L.append(n)
+    n=n+2
+print(L)
+'''
+
+#迭代
+#在Python中，迭代是通过for ... in来完成的
+
+'''
+d={'a':1,'b':2,'c':3}
+for key in d:
+    print(key)
+'''
+
+'''
+list:    d=[1,2,3]
+tuple:   d=(1,2,3)
+dict:    d={1,2,3}
+'''
+
+
+'''
+d={'a':1,'b':2,'c':3}
+for k,v in d.items():
+    print(k,v)
+'''
+
+'''
+for ch in 'ABC':
+    print(ch)
+
+'''
+
+'''
+from collections import Iterable
+print(isinstance('abc',Iterable))
+print(isinstance([1,2,3],Iterable))
+print(isinstance(123,Iterable))
+'''
+
+
+'''
+#Python内置的enumerate函数可以把一个list变成索引-元素对，这样就可以在for循环中同时迭代索引和元素本身：
+for i,value in enumerate(['A','B','C']):
+    print(i,value)
+
+for x, y in [(1, 1), (2, 4), (3, 9)]:
+    print(x, y)
+'''
+
+'''
+#list comprehensions
+x=list(range(1,11))
+print(x)
+'''
+
+'''
+L=[]
+for x in range(1,11):
+    L.append(x*x)
+print(L)
+'''
+
+
+'''
+x=[x*x for x in range(1,11) if x % 2==0]
+print(x)
+'''
+
+'''
+y=[m+n for m in "ABC" for n in "XYZ"]
+print(y)
+
+'''
+
+
+'''
+import os
+Z=[d for d in os.listdir('.')]
+print(Z)
+'''
+
+'''
+#list
+L=[x*x for x in range(1,10)]
+print(L)
+
+
+#generator
+g=(x*x for x in range(1,10))
+for n in g:
+    print(n)
+
+'''
+
+'''
+def fib(max):
+    n,a,b=0,0,1
+    while n<max:
+        a,b=b,a+b
+        n=n+1
+    return 'done'
+print(fib(5))
+'''
+
+
+'''
+#!/usr/bin/env python3
+#-*- coding=utf-8 -*
+'a test module'
+__author__ = 'Michael Liao'
+import sys
+def test():
+    args=sys.argv
+    if len(args)==1:
+        print('Hello,world')
+    if len(args)==2:
+        print('Hello,%s!' % args[1])
+    else:
+        print('Too Many arguments!')
+
+if __name__=='__main__':
+    test()
+'''
+
+
+def _private_1(name):
+    return 'Hello,%s' % name
+def _private_2(name):
+    return 'Hi,%s' % name
+def greeting(name):
+    if len(name)>3:
+        return _private_1(name)
+    else:
+        return _private_2(name)
+t=greeting('mark')
+print(t)
 
