@@ -14,7 +14,7 @@ else:
     print(-a)
 
 '''
-
+from pyclbr import Class
 
 '''
 #if else
@@ -451,7 +451,7 @@ if __name__=='__main__':
     test()
 '''
 
-
+'''
 def _private_1(name):
     return 'Hello,%s' % name
 def _private_2(name):
@@ -464,3 +464,30 @@ def greeting(name):
 t=greeting('mark')
 print(t)
 
+'''
+
+
+'''
+开头有双下划线    ==》》  私有变量（外部不可访问）
+开头和结尾都有双下划线  ==》》 特殊变量（外部可访问）
+开头单下划线  ==》》  视为私有变量（不建议访问）
+若要访问，可在class内部单独添加函数
+'''
+
+class Student(object):
+    def __init__(self,name,score):
+        self.__name=name
+        self.__score=score
+    def print_score(self):
+        print('%s:%s' % (self.__name,self.__score))
+    def get_name(self):
+        return self.__name
+    def get_score(self):
+        return self.__score
+    def set_score(self,score):
+        if 0<=score<=100:
+            self.__score=score
+        else:
+            raise ValueError('bad score')
+mark=Student('Mark.li',99)
+print(mark.get_name(),'%s' % mark.get_score())
