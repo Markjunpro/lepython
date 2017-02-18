@@ -474,6 +474,7 @@ print(t)
 若要访问，可在class内部单独添加函数
 '''
 
+'''
 class Student(object):
     def __init__(self,name,score):
         self.__name=name
@@ -491,3 +492,21 @@ class Student(object):
             raise ValueError('bad score')
 mark=Student('Mark.li',99)
 print(mark.get_name(),'%s' % mark.get_score())
+'''
+class Student(object):
+    def get_score(self):
+        return self._score
+    def set_score(self, value):
+        if not isinstance(value,int):
+            raise ValueError('score must be an integer!')
+        if value<0 or value>100:
+            raise ValueError('score must between 0~100')
+        self._score=value
+s=Student()
+s.set_score(60)
+k=s.get_score()
+print(k)
+
+s.set_score(9)
+k=s.get_score()
+print(k)
