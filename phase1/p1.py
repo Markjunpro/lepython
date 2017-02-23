@@ -493,6 +493,7 @@ class Student(object):
 mark=Student('Mark.li',99)
 print(mark.get_name(),'%s' % mark.get_score())
 '''
+'''
 class Student(object):
     def get_score(self):
         return self._score
@@ -510,3 +511,20 @@ print(k)
 s.set_score(9)
 k=s.get_score()
 print(k)
+'''
+
+'''
+def log(text):
+    def decorator(func):
+        def wrapper(*args,**kw):
+            print('%s %s():' % (text,func.__name__))
+            return func(*args,**kw)
+        return wrapper
+    return decorator
+
+@log('execute')
+def now():
+    print('2015-3-25')
+
+print(now())
+'''
